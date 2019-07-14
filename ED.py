@@ -3,6 +3,7 @@ from difflib import get_close_matches
 
 
 data = json.load(open("data.json"))
+
 def translate(w):
     w = w.lower()
     if w in data :
@@ -10,6 +11,9 @@ def translate(w):
 # Added to deal with input words which starts with capital letter
     elif w.title() in data:
         return data[w.title()]
+#in case user enters words like USA or NATO
+    elif w.upper() in data:
+        return data[w.upper()]
 #will check the close range words
     elif len(get_close_matches(w,data.keys())) >0:
 #Condition given to the user
